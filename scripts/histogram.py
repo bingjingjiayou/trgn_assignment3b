@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 
 path= "/home/bingjing/assignments/trgn_assignment3b/scripts/expression_analysis.csv"
 df=pd.read_csv(path)
-fig = plt.figure(figsize=(12,4))    
-
+fig = plt.figure(figsize=(12,4))  
+  
+plt.bar(df['Name'], df['Age'])
 plt.grid(axis='y', alpha=0.75)
 plt.xticks(fontsize=10)
 plt.xlabel('Name')
