@@ -1,15 +1,11 @@
-import matplotlib.pyplot as plt
+#!/usr/bin/python3
+import re
+ens2gene={}
 
-with open('/home/bingjing/assignments/trgn_assignment3b/scripts/expression_analysis.tsv')
-
-#  matplotlib.axes.Axes.hist()
-n, bins, patches = plt.hist(x=d, bins='auto', color='#0504aa',
-                            alpha=0.7, rwidth=0.85)
-plt.grid(axis='y', alpha=0.75)
-plt.xlabel('Name')
-plt.ylabel('Age')
-plt.title('Histogram')
-plt.text(23, 45, r'$\mu=15, b=3$')
-maxfreq = n.max()
-
-plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
+with open("gencode.v38.basic.annotation.gtf", 'r') as file:
+    for line in file:
+         matches=re.findall('.*gene_id "(.*?)".*gene_name "(.*?)";',line)
+         if matches:
+             print(matches[0][0])
+             ens2gene[matches[0][0]]=matches[0][1]
+             
