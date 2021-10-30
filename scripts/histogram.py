@@ -1,16 +1,21 @@
 #!/usr/bin/python3
 import pandas as pd
-import numpy as np
+import sys
 import matplotlib.pyplot as plt
 
-path= "/home/bingjing/assignments/trgn_assignment3b/scripts/expression_analysis.csv"
-df=pd.read_csv(path)
-fig = plt.figure(figsize=(12,4))  
-  
-plt.bar(df['Name'], df['Age'])
-plt.grid(axis='y', alpha=0.75)
-plt.xticks(fontsize=10)
-plt.xlabel('Name')
-plt.ylabel('Age')
-plt.title('510 Age Histogram')
-plt.savefig("./Age_histogram.png")
+args3b = sys.argv[1:]
+
+print(args3b)
+
+if args3b[0].startswith('-f'):
+    axis = int(args3b[0][-1])
+    file3b = sys.argv[2]
+    df = pd.read_csv(file3b)
+   
+else:
+    axis = 1
+    file3b = sys.argv[1]
+    df = pd.read_csv(file3b)
+
+df.iloc[:,axis].hist()
+plt.savefig("./laboratory_data.png")
